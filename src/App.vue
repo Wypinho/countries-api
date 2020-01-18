@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <h1>Countries Of The World</h1>
+    <h2>Population Of The World: {{worldPopulation}}</h2>
     <country-form :countries="countries"></country-form>
 
     <div class="container">
-      <country-display :country="selectedCountry"></country-display>
+      <country-display :country="selectedCountry" :countries="countries"></country-display>
     </div>
   </div>
 </template>
@@ -26,6 +27,11 @@ export default {
       selectedCountry: null
     }
   },
+  computed: {
+    worldPopulation: function() {
+      return this.populationCalculator(this.countries)
+    }
+  },
   mounted(){
     fetch('https://restcountries.eu/rest/v2/all')
       .then(response => response.json())
@@ -34,6 +40,11 @@ export default {
     eventBus.$on('country-select', (countryCode) => {
       this.selectedCountry = this.countries.find(country => country.alpha3Code === countryCode)
     })
+  },
+  methods: {
+    populationCalculator: function(countries){
+        return countries.reduce((runningTotal, country) => runningTotal + country.population, 0);
+      }
   }
 }
 </script>
