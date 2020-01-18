@@ -1,6 +1,6 @@
 <template lang="html">
-  <select v-on:change="handleChange" v-model="selectedCountry">
-    <option v-for="country in countries" :value="country">{{country.name}}</option>
+  <select v-on:change="handleChange" v-model="selectedCountryCode">
+    <option v-for="country in countries" :value="country.alpha3Code">{{country.name}}</option>
   </select>
 </template>
 
@@ -12,12 +12,12 @@ export default {
   props: ['countries'],
   data() {
     return {
-      'selectedCountry': {}
+      'selectedCountryCode': null
     }
   },
   methods: {
     handleChange(){
-      eventBus.$emit('country-select', this.selectedCountry)
+      eventBus.$emit('country-select', this.selectedCountryCode)
     }
   }
 }

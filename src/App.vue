@@ -31,8 +31,8 @@ export default {
       .then(response => response.json())
       .then(objectsArray => this.countries = objectsArray)
 
-    eventBus.$on('country-select', (country) => {
-      this.selectedCountry = country
+    eventBus.$on('country-select', (countryCode) => {
+      this.selectedCountry = this.countries.find(country => country.alpha3Code === countryCode)
     })
   }
 }
