@@ -5,9 +5,11 @@
     <country-form :countries="countries"></country-form>
 
     <div class="container">
-      <country-display :country="selectedCountry" :countries="countries"></country-display>
-      <img v-if="selectedCountry" class="flag-large":src="selectedCountry.flag" alt="">
-      <favourite-countries :countries="favouriteCountries"></favourite-countries>
+      <country-display class="column" :country="selectedCountry" :countries="countries"></country-display>
+      <div class="column">
+        <img v-if="selectedCountry" class="flag-large":src="selectedCountry.flag" alt="">
+      </div>
+      <favourite-countries class="last-column" :countries="favouriteCountries"></favourite-countries>
     </div>
   </div>
 </template>
@@ -74,11 +76,28 @@ h1 {
 }
 
 .container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-column-gap: 50px;
+  /* display: grid; */
+  /* grid-template-columns: auto auto auto; */
+  /* grid-column-gap: 50px; */
   text-align: left;
   margin-top: 40px;
+}
+
+/* Clear floats after the columns */
+.container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+.last-column {
+  float: left;
+  width: 20%;
 }
 
 .flag-large {
