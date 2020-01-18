@@ -19,10 +19,7 @@
         <li v-for="neighbour in neighbours">{{neighbour.name}} <img class="flag-small" :src="neighbour.flag"></li>
       </ul>
     </div>
-    <div class="">
-      <img class="flag-large":src="country.flag" alt="">
 
-    </div>
 
 
   </article>
@@ -65,8 +62,6 @@ article {
 h3  {
   text-align: left;
 }
-
-
 
 dt, dd {
   display: inline-grid;

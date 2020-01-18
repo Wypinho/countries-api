@@ -6,6 +6,7 @@
 
     <div class="container">
       <country-display :country="selectedCountry" :countries="countries"></country-display>
+      <img v-if="selectedCountry" class="flag-large":src="selectedCountry.flag" alt="">
       <favourite-countries :countries="favouriteCountries"></favourite-countries>
     </div>
   </div>
@@ -74,8 +75,8 @@ h1 {
 
 .container {
   display: grid;
-  grid-template-columns: auto auto;
-  grid-column-gap: 300px;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 50px;
   text-align: left;
   margin-top: 40px;
 }
@@ -84,8 +85,8 @@ h1 {
   height: 300px;
   /* width: 500px; */
   display: block;
-  margin-left: auto;
   border: solid 1px;
+  text-align: center;
 }
 
 .flag-small {
