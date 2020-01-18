@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <h1>Countries Of The World</h1>
-    <div class="">
-      <country-form :countries="countries"></country-form>
+    <country-form :countries="countries"></country-form>
+
+    <div class="container">
       <country-display :country="selectedCountry"></country-display>
     </div>
   </div>
@@ -22,7 +23,7 @@ export default {
   data() {
     return {
       countries: [],
-      selectedCountry: {}
+      selectedCountry: null
     }
   },
   mounted(){
@@ -42,8 +43,19 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  text-align: center;
+}
+
+h1 {
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 300px;
+  text-align: left;
+  margin-top: 40px;
 }
 </style>
