@@ -2,7 +2,7 @@
   <article v-if="country">
     <div class="">
       <h3>{{country.name}}</h3>
-      <button type="button" name="button">Add to Favourites</button>
+      <button v-on:click="handleClick">Add to Favourites</button>
       <dl>
         <dt>Capital:</dt>
         <dd>{{country.capital}}</dd>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import {eventBus} from '../main.js'
+
 export default {
   name: 'country-display',
   props: ['country', 'countries'],
@@ -45,7 +47,10 @@ export default {
   methods: {
     populationCalculator: function(countries){
         return countries.reduce((runningTotal, country) => runningTotal + country.population, 0);
-      }
+      },
+    handleClick(){
+        eventBus.$emit('favourite', this.country.alpha3Code)
+    }
   }
 }
 </script>
@@ -61,18 +66,7 @@ h3  {
   text-align: left;
 }
 
-.flag-large {
-  height: 300px;
-  /* width: 500px; */
-  display: block;
-  margin-left: auto;
-  border: solid 1px;
-}
 
-.flag-small {
-  height: 30px;
-  border: solid 1px;
-}
 
 dt, dd {
   display: inline-grid;

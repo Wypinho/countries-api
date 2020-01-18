@@ -6,7 +6,7 @@
 
     <div class="container">
       <country-display :country="selectedCountry" :countries="countries"></country-display>
-      <favourite-countries></favourite-countries>
+      <favourite-countries :countries="favouriteCountries"></favourite-countries>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
   components: {
     "country-form": CountryForm,
     "country-display": CountryDisplay,
-    "favourite-country": FavouriteCountries
+    "favourite-countries": FavouriteCountries
   },
   data() {
     return {
@@ -46,6 +46,7 @@ export default {
     })
 
     eventBus.$on('favourite', (countryCode) => {
+      if (this.favouriteCountries.includes(this.countries.find(country => country.alpha3Code === countryCode))) return
       this.favouriteCountries.push(this.countries.find(country => country.alpha3Code === countryCode))
     })
 
@@ -77,5 +78,18 @@ h1 {
   grid-column-gap: 300px;
   text-align: left;
   margin-top: 40px;
+}
+
+.flag-large {
+  height: 300px;
+  /* width: 500px; */
+  display: block;
+  margin-left: auto;
+  border: solid 1px;
+}
+
+.flag-small {
+  height: 30px;
+  border: solid 1px;
 }
 </style>
