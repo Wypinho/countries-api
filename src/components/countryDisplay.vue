@@ -2,6 +2,7 @@
   <article v-if="country">
     <div class="">
       <h3>{{country.name}}</h3>
+      <button type="button" name="button">Add to Favourites</button>
       <dl>
         <dt>Capital:</dt>
         <dd>{{country.capital}}</dd>

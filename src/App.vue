@@ -6,6 +6,7 @@
 
     <div class="container">
       <country-display :country="selectedCountry" :countries="countries"></country-display>
+      <favourite-countries></favourite-countries>
     </div>
   </div>
 </template>
@@ -14,17 +15,20 @@
 import {eventBus} from './main.js'
 import CountryForm from './components/countryForm.vue'
 import CountryDisplay from './components/countryDisplay.vue'
+import FavouriteCountries from './components/favouriteCountries.vue'
 
 export default {
   name: 'app',
   components: {
     "country-form": CountryForm,
-    "country-display": CountryDisplay
+    "country-display": CountryDisplay,
+    "favourite-country": FavouriteCountries
   },
   data() {
     return {
       countries: [],
-      selectedCountry: null
+      selectedCountry: null,
+      favouriteCountries: []
     }
   },
   computed: {
@@ -40,6 +44,11 @@ export default {
     eventBus.$on('country-select', (countryCode) => {
       this.selectedCountry = this.countries.find(country => country.alpha3Code === countryCode)
     })
+
+    eventBus.$on('favourite', (countryCode) => {
+      this.favouriteCountries.push(this.countries.find(country => country.alpha3Code === countryCode))
+    })
+
   },
   methods: {
     populationCalculator: function(countries){
