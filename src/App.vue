@@ -76,9 +76,9 @@ h1 {
 }
 
 .container {
-  /* display: grid; */
-  /* grid-template-columns: auto auto auto; */
-  /* grid-column-gap: 50px; */
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-column-gap: 20px;
   text-align: left;
   margin-top: 40px;
 }
@@ -90,19 +90,9 @@ h1 {
   clear: both;
 }
 
-.column {
-  float: left;
-  width: 33.33%;
-}
-
-.last-column {
-  float: left;
-  width: 20%;
-}
-
 .flag-large {
-  height: 300px;
-  /* width: 500px; */
+  /* height: 300px; */
+  width: 90%;
   display: block;
   border: solid 1px;
   text-align: center;
